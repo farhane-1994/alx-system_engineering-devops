@@ -1,10 +1,13 @@
-# creates a file in the /tmp directory
-$file_path = '/tmp/school'
+me of the private key
+PRIVATE_KEY="school"
 
-file { $file_path:
-  ensure  => 'file',
-  mode    => '0744',
-  owner   => 'www-data',
-  group   => 'www-data',
-  content => 'I love Puppet'
-}
+# Number of bits in the key
+BITS=4096
+
+# Passphrase for the key
+PASSPHRASE="betty"
+
+# Generate RSA key pair
+ssh-keygen -t rsa -b $BITS -C "" -f $PRIVATE_KEY -N "$PASSPHRASE"
+
+echo "RSA key pair generated successfully."
